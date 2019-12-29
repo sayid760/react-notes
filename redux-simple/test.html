@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let obj={
+        count: function(aa){console.log(aa)},
+        user: function(bb){console.log(bb)}
+    }
+    // dispatch
+   
+  let bb=  Object.keys(obj).reduce((pre,key)=>{
+        const actionCreator = obj[key]
+        console.log(pre)
+        console.log(actionCreator) // (aa){console.log(aa)}
+        pre[key] = (...args) => actionCreator(args)
+        return pre
+    },{})
+
+    console.log(bb)
+    </script>
+</body>
+</html>
