@@ -101,8 +101,7 @@ export function connect(mapStateToProps, mapDispatchToProps) {
 
         // 保存到组件上
         this.dispatchProps = dispatchProps
-        console.log(dispatchProps)
-
+        console.log(dispatchProps) // {increment: (...args) => store.dispatch(actionCreator(...args)), decrement: (...args) => store.dispatch(actionCreator(...args))}
         // 绑定store的state变化的监听
         store.subscribe(() => { // store内部的状态数据发生了变化
           // 更新容器组件 ==> UI组件更新
