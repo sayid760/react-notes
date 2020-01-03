@@ -74,13 +74,21 @@ export function connect(mapStateToProps, mapDispatchToProps) {
         const stateProps = mapStateToProps(store.getState())  // {count: 1, user:{}}  ====> {count: 222, user:{xxx}} 对象经过mapStateToProps里面的函数又吐出新对象
         // 将所有一般属性作为容器的状态数据
         this.state = {...stateProps}
-        console.log(mapDispatchToProps)
-        console.log(store.dispatch)
+        console.log(mapDispatchToProps) // {increment: number => {…},decrement: number => {…}}
+        console.log(store.dispatch) // store.dispatch为store里的方法
+         /*
+           // mapDispatchToProps==='function'时：
+           const mapDispatchToProps = (dispatch) => ({
+              increment: (number) => dispatch(increment(number)),
+              decrement: (number) => dispatch(decrement(number)),
+            })
+            // 为对象时：
+            const mapDispatchToProps = {increment, decrement}
+         */
         //得到包含所有函数属性的对象
         let dispatchProps
         if(typeof mapDispatchToProps==='function') {
-          console.log('111')
-          dispatchProps = mapDispatchToProps(store.dispatch)
+          dispatchProps = mapDispatchToProps(store.dispatch)  
         } else {
           // console.log(Object.keys(mapDispatchToProps))
           dispatchProps = Object.keys(mapDispatchToProps).reduce((pre, key) => {
